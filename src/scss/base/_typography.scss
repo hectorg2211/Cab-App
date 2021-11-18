@@ -12,4 +12,17 @@ body {
     font-weight: 400;
     font-size: 3rem;
   }
+
+  &--2 {
+    color: $color-black;
+    font-weight: 400;
+    font-size: 3rem;
+  }
+}
+
+.p {
+  &--1 {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
 }
