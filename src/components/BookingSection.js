@@ -65,12 +65,14 @@ const Booking = () => {
       </div>
 
       {showMap && (
-        <div className="booking__map">
-          <Map
-            pickupCoordinates={pickup.center}
-            destinationCoordinates={dropoff.center}
-          />
-        </div>
+        <>
+          <div className="booking__map">
+            <Map
+              pickupCoordinates={pickup.center}
+              destinationCoordinates={dropoff.center}
+            />
+          </div>
+        </>
       )}
     </section>
   );
