@@ -6,7 +6,7 @@ const Benefits = () => {
     <section className="benefits">
       <div className="benefits__container mt-med">
         <h2 className="h2 h2--2">
-          Cab booking benefit with <span>PML Holidays</span>{" "}
+          Cab booking benefit with <span>PML Holidays</span>
         </h2>
       </div>
       <div className="benefits__container">

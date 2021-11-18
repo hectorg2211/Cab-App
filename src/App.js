@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import BookingSection from "./components/BookingSection";
 import Benefits from "./components/Benefits";
 import TopRoutes from "./components/TopRoutes";
+import Why from "./components/Why";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <BookingSection />
       <Benefits />
       <TopRoutes />
+      <Why />
     </div>
   );
 }
