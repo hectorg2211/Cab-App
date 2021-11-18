@@ -3,3 +3,13 @@ body {
   font-weight: 600;
   line-height: 1.7;
 }
+
+.h2 {
+  text-align: center;
+
+  &--1 {
+    color: $color-white;
+    font-weight: 400;
+    font-size: 3rem;
+  }
+}

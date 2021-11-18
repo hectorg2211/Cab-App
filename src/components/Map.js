@@ -15,25 +15,18 @@ const Map = () => {
     //   center: [-74.5, 40], // starting position [lng, lat]
     //   zoom: 9, // starting zoom
     // });
-
     // Add the control to the map.
-    const geocoder1 = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl,
-    });
-    const geocoder2 = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl,
-    });
-
-    geocoder1.addTo("#geocoder1");
-    geocoder2.addTo("#geocoder2");
+    // const geocoder2 = new MapboxGeocoder({
+    //   accessToken: mapboxgl.accessToken,
+    //   mapboxgl: mapboxgl,
+    // });
+    // geocoder2.addTo("#geocoder2");
   }, []);
 
   return (
     <div id="geocoders">
       <div id="geocoder1"></div>
-      <div id="geocoder2"></div>
+      {/* <div id="geocoder2"></div> */}
     </div>
   );
 };
