@@ -7,6 +7,7 @@ import BookingSection from "./components/BookingSection";
 import Benefits from "./components/Benefits";
 import TopRoutes from "./components/TopRoutes";
 import Why from "./components/Why";
+import Rates from "./components/Rates";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Benefits />
       <TopRoutes />
       <Why />
+      <Rates />
     </div>
   );
 }
