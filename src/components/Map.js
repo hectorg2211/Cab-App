@@ -23,7 +23,7 @@ const Map = ({ pickupCoordinates, destinationCoordinates }) => {
 
     if (pickupCoordinates) addToMap(map, pickupCoordinates);
     if (destinationCoordinates) addToMap(map, destinationCoordinates);
-    if (pickupCoordinates[0] != 0 && destinationCoordinates[0] != 0) {
+    if (pickupCoordinates[0] !== 0 && destinationCoordinates[0] !== 0) {
       map.fitBounds([pickupCoordinates, destinationCoordinates], {
         padding: { top: 50, bottom: 50, left: 50, right: 50 },
       });

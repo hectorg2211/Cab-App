@@ -9,6 +9,7 @@ const Booking = () => {
   const [pickup, setPickup] = useState({});
   const [dropoff, setDropoff] = useState({});
   const [showMap, setShowMap] = useState(false);
+  const [selectedOption, setselectedOption] = useState(2);
 
   useEffect(() => {}, [pickup, dropoff]);
 
@@ -24,7 +25,29 @@ const Booking = () => {
       <div className="booking__container">
         <h2 className="h2 h2--1">PML HOLIDAYS</h2>
       </div>
+
       <div className="booking__container">
+        <p
+          className={`p p--1 ${selectedOption === 1 ? "active" : ""}`}
+          onClick={() => setselectedOption(1)}
+        >
+          Aiport Transfer
+        </p>
+        <p
+          className={`p p--1 ${selectedOption === 2 ? "active" : ""}`}
+          onClick={() => setselectedOption(2)}
+        >
+          Outstation/Other
+        </p>
+        <p
+          className={`p p--1 ${selectedOption === 3 ? "active" : ""}`}
+          onClick={() => setselectedOption(3)}
+        >
+          Hourly
+        </p>
+      </div>
+
+      <div className="booking__container ">
         <div className="booking__pickup">
           <h2 className="h2 ">Pick-up location</h2>
           <Geocoder number={1} setCoordinates={setPickup} />
