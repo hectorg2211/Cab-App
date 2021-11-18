@@ -5,6 +5,7 @@ import "./scss/App.scss";
 import Header from "./components/Header";
 import BookingSection from "./components/BookingSection";
 import Benefits from "./components/Benefits";
+import TopRoutes from "./components/TopRoutes";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <BookingSection />
       <Benefits />
+      <TopRoutes />
     </div>
   );
 }
