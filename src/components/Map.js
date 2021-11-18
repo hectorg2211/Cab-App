@@ -9,26 +9,15 @@ mapboxgl.accessToken =
 
 const Map = () => {
   useEffect(() => {
-    // const map = new mapboxgl.Map({
-    //   container: "map", // Container ID
-    //   style: "mapbox://styles/hectorg2211/ckw47o6zz3eck14qsch4mwwxd", // Style url
-    //   center: [-74.5, 40], // starting position [lng, lat]
-    //   zoom: 9, // starting zoom
-    // });
-    // Add the control to the map.
-    // const geocoder2 = new MapboxGeocoder({
-    //   accessToken: mapboxgl.accessToken,
-    //   mapboxgl: mapboxgl,
-    // });
-    // geocoder2.addTo("#geocoder2");
+    const map = new mapboxgl.Map({
+      container: "map", // Container ID
+      style: "mapbox://styles/hectorg2211/ckw47o6zz3eck14qsch4mwwxd", // Style url
+      center: [79.27329, 22.137936], // starting position [lng, lat]
+      zoom: 4, // starting zoom
+    });
   }, []);
 
-  return (
-    <div id="geocoders">
-      <div id="geocoder1"></div>
-      {/* <div id="geocoder2"></div> */}
-    </div>
-  );
+  return <div id="map"></div>;
 };
 
 export default Map;

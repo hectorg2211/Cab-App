@@ -1,6 +1,4 @@
 import React from "react";
-import MyLocationRoundedIcon from "@mui/icons-material/MyLocationRounded";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import Map from "./Map";
 import Geocoder from "./Geocoder";
@@ -28,6 +26,10 @@ const Booking = () => {
           <SearchRoundedIcon />
           <h2 className="h2">Search</h2>
         </button>
+      </div>
+
+      <div className="booking__container">
+        <Map />
       </div>
     </section>
   );

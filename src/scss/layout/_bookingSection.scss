@@ -8,12 +8,16 @@
   &__container {
     width: 80vw;
     justify-content: center;
-    &:last-child {
+    &:nth-child(2) {
       background: $color-white;
       display: flex;
       box-shadow: 4px 4px 4px rgba(71, 101, 187, 75%);
       border-radius: $border-radius;
       margin-top: 30px;
+    }
+
+    &:last-child {
+      height: 80vh;
     }
   }
 
