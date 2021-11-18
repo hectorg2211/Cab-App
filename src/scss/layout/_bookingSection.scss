@@ -6,13 +6,13 @@
   padding: 50px 0;
 
   &__container {
-    width: 70vw;
+    width: 80vw;
     justify-content: center;
     &:last-child {
       background: $color-white;
       display: flex;
       box-shadow: 4px 4px 4px rgba(71, 101, 187, 75%);
-      border-radius: 3px;
+      border-radius: $border-radius;
       margin-top: 30px;
     }
   }
