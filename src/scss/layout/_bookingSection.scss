@@ -134,4 +134,34 @@
       }
     }
   }
+
+  .cards {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__top,
+    &__bottom {
+      display: flex;
+      gap: 10px;
+    }
+
+    &__from,
+    &__to,
+    &__duration,
+    &__bookmark {
+      background-color: $color-white;
+      padding: 20px;
+      border-radius: $border-radius;
+      border-radius: 1px solid $color-light-grey;
+      box-shadow: 2px 2.5px 5px -1px $color-light-grey;
+    }
+
+    &__from,
+    &__to,
+    &__duration {
+      flex: 1;
+    }
+  }
 }

@@ -72,6 +72,18 @@ const Booking = () => {
               destinationCoordinates={dropoff.center}
             />
           </div>
+
+          <div className="cards mt-big">
+            <div className="cards__top">
+              <div className="cards__from">From</div>
+              <div className="cards__to">To</div>
+            </div>
+
+            <div className="cards__bottom">
+              <div className="cards__duration">Duration</div>
+              <div className="cards__bookmark">Bookmark</div>
+            </div>
+          </div>
         </>
       )}
     </section>
