@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import Map from "./Map";
 import Geocoder from "./Geocoder";
@@ -6,6 +6,19 @@ import Geocoder from "./Geocoder";
 // Mapbox
 
 const Booking = () => {
+  const [pickup, setPickup] = useState({});
+  const [dropoff, setDropoff] = useState({});
+  const [showMap, setShowMap] = useState(false);
+
+  useEffect(() => {}, [pickup, dropoff]);
+
+  const renderMap = () => {
+    if (Object.keys(pickup).length === 0 || Object.keys(dropoff).length === 0) {
+      return;
+    }
+    setShowMap(true);
+  };
+
   return (
     <section className="booking">
       <div className="booking__container">
@@ -14,23 +27,25 @@ const Booking = () => {
       <div className="booking__container">
         <div className="booking__pickup">
           <h2 className="h2 ">Pick-up location</h2>
-          <Geocoder number={1} />
+          <Geocoder number={1} setCoordinates={setPickup} />
         </div>
 
         <div className="booking__dropoff">
           <h2 className="h2 ">Drop-off</h2>
-          <Geocoder number={2} />
+          <Geocoder number={2} setCoordinates={setDropoff} />
         </div>
 
-        <button className="booking__button">
+        <button className="booking__button" onClick={renderMap}>
           <SearchRoundedIcon />
           <h2 className="h2">Search</h2>
         </button>
       </div>
 
-      <div className="booking__container">
-        <Map />
-      </div>
+      {showMap && (
+        <div className="booking__map">
+          <Map />
+        </div>
+      )}
     </section>
   );
 };

@@ -15,10 +15,11 @@
       border-radius: $border-radius;
       margin-top: 30px;
     }
+  }
 
-    &:last-child {
-      height: 80vh;
-    }
+  &__map {
+    height: 80vh;
+    width: 80vw;
   }
 
   &__container,
