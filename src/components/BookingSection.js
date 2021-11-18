@@ -12,7 +12,7 @@ const Booking = () => {
 
   useEffect(() => {}, [pickup, dropoff]);
 
-  const renderMap = () => {
+  const toggleMapRender = () => {
     if (Object.keys(pickup).length === 0 || Object.keys(dropoff).length === 0) {
       return;
     }
@@ -35,7 +35,7 @@ const Booking = () => {
           <Geocoder number={2} setCoordinates={setDropoff} />
         </div>
 
-        <button className="booking__button" onClick={renderMap}>
+        <button className="booking__button" onClick={toggleMapRender}>
           <SearchRoundedIcon />
           <h2 className="h2">Search</h2>
         </button>
@@ -43,7 +43,10 @@ const Booking = () => {
 
       {showMap && (
         <div className="booking__map">
-          <Map />
+          <Map
+            pickupCoordinates={pickup.center}
+            destinationCoordinates={dropoff.center}
+          />
         </div>
       )}
     </section>

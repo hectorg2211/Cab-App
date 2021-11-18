@@ -14,6 +14,7 @@ const Geocoder = ({ number, setCoordinates }) => {
 
     geocoder.addTo(`#geocoder${number}`);
     geocoder.on("result", (e) => {
+      console.log(e.result);
       setCoordinates(e.result);
     });
   }, [setCoordinates, number]);
