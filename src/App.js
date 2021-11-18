@@ -8,6 +8,7 @@ import Benefits from "./components/Benefits";
 import TopRoutes from "./components/TopRoutes";
 import Why from "./components/Why";
 import Rates from "./components/Rates";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <TopRoutes />
       <Why />
       <Rates />
+      <Footer />
     </div>
   );
 }
