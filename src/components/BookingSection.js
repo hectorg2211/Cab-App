@@ -7,12 +7,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 // Date picking
 import MomentUtils from "@date-io/moment";
-import {
-  DatePicker,
-  TimePicker,
-  DateTimePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
+import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 // API
 import pmlAPI from "../api/pmlAPI";
@@ -101,6 +96,7 @@ const Booking = () => {
           <h2 className="h2 ">Drop-off</h2>
           <Geocoder number={2} setCoordinates={setDropoff} />
         </div>
+
         <div className="booking__date">
           <h2 className="h2 ">Pick-up Date & Time</h2>
           <MuiPickersUtilsProvider utils={MomentUtils}>
