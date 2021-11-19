@@ -10,6 +10,7 @@ const Geocoder = ({ number, setCoordinates }) => {
     const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl,
+      country: "in",
     });
 
     geocoder.addTo(`#geocoder${number}`);

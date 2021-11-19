@@ -4,6 +4,7 @@ import Map from "./Map";
 import Geocoder from "./Geocoder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import axios from "axios";
 
 // Mapbox
 
@@ -24,6 +25,10 @@ const Booking = () => {
   const handleMouseOut = (e) => {
     e.stopPropagation();
     setIsHovering(false);
+  };
+
+  const handleSearchClick = () => {
+    toggleMapRender();
   };
 
   useEffect(() => {
@@ -87,7 +92,7 @@ const Booking = () => {
           <Geocoder number={2} setCoordinates={setDropoff} />
         </div>
 
-        <button className="booking__button" onClick={toggleMapRender}>
+        <button className="booking__button" onClick={handleSearchClick}>
           <SearchRoundedIcon />
           <h2 className="h2">Search</h2>
         </button>
