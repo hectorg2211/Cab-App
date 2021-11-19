@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import Map from "./Map";
 import Geocoder from "./Geocoder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 // Mapbox
 
@@ -10,8 +12,35 @@ const Booking = () => {
   const [dropoff, setDropoff] = useState({});
   const [showMap, setShowMap] = useState(false);
   const [selectedOption, setselectedOption] = useState(2);
+  const [duration, setDuration] = useState(0);
+  const [distance, setDistance] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
 
-  useEffect(() => {}, [pickup, dropoff]);
+  const handleMouseOver = (e) => {
+    e.stopPropagation();
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = (e) => {
+    e.stopPropagation();
+    setIsHovering(false);
+  };
+
+  useEffect(() => {
+    // console.log(pickup.place_name);
+    if (Object.keys(pickup).length !== 0 && Object.keys(dropoff).length !== 0) {
+      fetch(
+        `https://api.mapbox.com/directions/v5/mapbox/driving/${pickup.center[0]},${pickup.center[1]};${dropoff.center[0]},${dropoff.center[1]}?access_token=pk.eyJ1IjoiaGVjdG9yZzIyMTEiLCJhIjoiY2t0eWtxbmhtMDhwMTJwcG1jZXd0b3VhMSJ9.8XhBErdMP3PqsR-xN-NkMA`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.routes) {
+            setDuration(data.routes[0]?.duration);
+            setDistance(data.routes[0]?.distance);
+          }
+        });
+    }
+  }, [pickup, dropoff]);
 
   const toggleMapRender = () => {
     if (Object.keys(pickup).length === 0 || Object.keys(dropoff).length === 0) {
@@ -73,15 +102,34 @@ const Booking = () => {
             />
           </div>
 
-          <div className="cards mt-big">
+          <div className="cards ">
             <div className="cards__top">
-              <div className="cards__from">From</div>
-              <div className="cards__to">To</div>
+              <div className="cards__from">
+                <h3 className="h3">From:</h3>
+                <p className="p p--1">{pickup.place_name}</p>
+              </div>
+              <div className="cards__to">
+                <h3 className="h3">To:</h3>
+                <p className="p p--1">{dropoff.place_name}</p>
+              </div>
             </div>
 
             <div className="cards__bottom">
-              <div className="cards__duration">Duration</div>
-              <div className="cards__bookmark">Bookmark</div>
+              <div className="cards__duration">
+                <h3 className="h3">Duration:</h3>
+                <p className="p p--1">{Math.trunc(duration / 60)} Minutes</p>
+              </div>
+              <div className="cards__distance">
+                <h3 className="h3">Distance:</h3>
+                <p className="p p--1">{Math.trunc(distance * 0.001)} KM</p>
+              </div>
+              <div
+                className="cards__bookmark"
+                onMouseOver={handleMouseOver}
+                onMouseOut={handleMouseOut}
+              >
+                {isHovering ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              </div>
             </div>
           </div>
         </>
