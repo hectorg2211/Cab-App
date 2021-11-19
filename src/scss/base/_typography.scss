@@ -35,6 +35,11 @@ body {
   }
 }
 
-span {
+.MuiTypography-body2,
+.MuiTypography-body1 {
+  font-size: 1.3rem !important;
+}
+
+.span {
   color: $color-secondary;
 }

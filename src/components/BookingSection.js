@@ -5,6 +5,15 @@ import Geocoder from "./Geocoder";
 // import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
+// Date picking
+import MomentUtils from "@date-io/moment";
+import {
+  DatePicker,
+  TimePicker,
+  DateTimePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+
 // API
 import pmlAPI from "../api/pmlAPI";
 
@@ -15,6 +24,7 @@ const Booking = () => {
   const [selectedOption, setselectedOption] = useState(2);
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
+  const [selectedDate, handleDateChange] = useState(new Date());
 
   const handleSearchClick = async () => {
     toggleMapRender();
@@ -87,10 +97,15 @@ const Booking = () => {
           <h2 className="h2 ">Pick-up location</h2>
           <Geocoder number={1} setCoordinates={setPickup} />
         </div>
-
         <div className="booking__dropoff">
           <h2 className="h2 ">Drop-off</h2>
           <Geocoder number={2} setCoordinates={setDropoff} />
+        </div>
+        <div className="booking__date">
+          <h2 className="h2 ">Pick-up Date & Time</h2>
+          <MuiPickersUtilsProvider utils={MomentUtils}>
+            <DateTimePicker value={selectedDate} onChange={handleDateChange} />
+          </MuiPickersUtilsProvider>
         </div>
 
         <button className="booking__button" onClick={handleSearchClick}>
