@@ -11,6 +11,9 @@ const Geocoder = ({ number, setCoordinates }) => {
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl,
       country: "in",
+      bbox: [
+        68.0753944015233, 6.65718310150864, 97.3950629309158, 35.6732489160381,
+      ],
     });
 
     geocoder.addTo(`#geocoder${number}`);

@@ -4,9 +4,9 @@ import Map from "./Map";
 import Geocoder from "./Geocoder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import axios from "axios";
 
-// Mapbox
+// API
+import pmlAPI from "../api/pmlAPI";
 
 const Booking = () => {
   const [pickup, setPickup] = useState({});
@@ -15,20 +15,21 @@ const Booking = () => {
   const [selectedOption, setselectedOption] = useState(2);
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
 
-  const handleMouseOver = (e) => {
-    e.stopPropagation();
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = (e) => {
-    e.stopPropagation();
-    setIsHovering(false);
-  };
-
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     toggleMapRender();
+    // Create a new ride document
+    let document = await pmlAPI.post("/api/v1/rides", {
+      from: `${pickup.place_name}`,
+      to: `${dropoff.place_name}`,
+      distance: `${distance}`,
+      coordinates: {
+        from: pickup.center,
+        to: dropoff.center,
+      },
+      date: new Date(),
+    });
+    console.log(document);
   };
 
   useEffect(() => {
@@ -128,12 +129,8 @@ const Booking = () => {
                 <h3 className="h3">Distance:</h3>
                 <p className="p p--1">{Math.trunc(distance * 0.001)} KM</p>
               </div>
-              <div
-                className="cards__bookmark"
-                onMouseOver={handleMouseOver}
-                onMouseOut={handleMouseOut}
-              >
-                {isHovering ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              <div className="cards__bookmark">
+                <BookmarkBorderIcon />
               </div>
             </div>
           </div>
