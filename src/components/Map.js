@@ -8,7 +8,8 @@ mapboxgl.accessToken =
 
 const addToMap = (map, coordinates) => {
   if (coordinates?.length > 0) {
-    const marker = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+    // const marker = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+    new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
   }
 };
 
