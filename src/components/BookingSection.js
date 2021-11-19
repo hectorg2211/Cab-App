@@ -60,6 +60,8 @@ const Booking = () => {
     setShowMap(true);
   };
 
+  console.log(selectedDate);
+
   return (
     <section className="booking">
       <div className="booking__container">
@@ -92,10 +94,13 @@ const Booking = () => {
           <h2 className="h2 ">Pick-up location</h2>
           <Geocoder number={1} setCoordinates={setPickup} />
         </div>
-        <div className="booking__dropoff">
-          <h2 className="h2 ">Drop-off</h2>
-          <Geocoder number={2} setCoordinates={setDropoff} />
-        </div>
+
+        {selectedOption !== 3 && (
+          <div className="booking__dropoff">
+            <h2 className="h2 ">Drop-off</h2>
+            <Geocoder number={2} setCoordinates={setDropoff} />
+          </div>
+        )}
 
         <div className="booking__date">
           <h2 className="h2 ">Pick-up Date & Time</h2>
