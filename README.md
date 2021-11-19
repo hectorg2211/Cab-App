@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b479897a-e029-4c33-a34a-34cf4c8eb833/deploy-status)](https://app.netlify.com/sites/pml-holidays/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
