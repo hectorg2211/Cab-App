@@ -65,7 +65,8 @@
 
   &__dropoff,
   &__pickup,
-  &__date {
+  &__date,
+  &__passengers {
     flex: 1;
     padding: 8px 22px;
     display: grid;

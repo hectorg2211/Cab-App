@@ -15,6 +15,10 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 
+// Dropdown
+import Box from "@mui/material/Box";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+
 // API
 import pmlAPI from "../api/pmlAPI";
 
@@ -27,6 +31,7 @@ const Booking = () => {
   const [distance, setDistance] = useState(0);
   const [selectedDate, handleDateChange] = useState(new Date());
   const [airportAction, setAirportAction] = useState("");
+  const [open, setOpen] = React.useState(false);
 
   const handleSearchClick = async () => {
     toggleMapRender();
@@ -56,6 +61,25 @@ const Booking = () => {
     name: "size-radio-button-demo",
     inputProps: { "aria-label": item },
   });
+
+  // Dropdown
+  const handleClick = () => {
+    setOpen((prev) => !prev);
+  };
+  const handleClickAway = () => {
+    setOpen(false);
+  };
+  const styles = {
+    position: "absolute",
+    top: 28,
+    right: 0,
+    left: 0,
+    zIndex: 1,
+    border: "1px solid",
+    p: 1,
+    bgcolor: "background.paper",
+    borderRadius: "3px",
+  };
 
   useEffect(() => {
     // console.log(pickup.place_name);
@@ -179,6 +203,24 @@ const Booking = () => {
           <MuiPickersUtilsProvider utils={MomentUtils}>
             <DateTimePicker value={selectedDate} onChange={handleDateChange} />
           </MuiPickersUtilsProvider>
+        </div>
+
+        <div className="booking__passengers">
+          <h2 className="h2 ">Passengers</h2>
+          <div className="passenger-counter">
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <Box sx={{ position: "relative" }}>
+                <button type="button" onClick={handleClick}>
+                  Open menu dropdown
+                </button>
+                {open ? (
+                  <Box sx={styles}>
+                    Click me, I will stay visible until you click outside.
+                  </Box>
+                ) : null}
+              </Box>
+            </ClickAwayListener>
+          </div>
         </div>
 
         <button className="booking__button" onClick={handleSearchClick}>
