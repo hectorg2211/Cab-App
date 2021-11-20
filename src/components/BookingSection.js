@@ -9,6 +9,13 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import MomentUtils from "@date-io/moment";
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
+// Radio buttons
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+
 // API
 import pmlAPI from "../api/pmlAPI";
 
@@ -87,6 +94,26 @@ const Booking = () => {
         >
           Hourly
         </p>
+      </div>
+
+      <div className="booking__container">
+        {selectedOption === 1 && (
+          <FormControl component="fieldset">
+            <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+              <FormControlLabel
+                value="airport-pickup"
+                control={<Radio />}
+                label="Airpot Pick-up"
+              />
+              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel
+                value="airport-drop"
+                control={<Radio />}
+                label="Airport Drop"
+              />
+            </RadioGroup>
+          </FormControl>
+        )}
       </div>
 
       <div className="booking__container ">
