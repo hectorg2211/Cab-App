@@ -16,6 +16,10 @@
       margin-top: 30px;
     }
 
+    &:nth-child(3) {
+      color: $color-white;
+    }
+
     &:nth-child(2) {
       justify-content: flex-start;
 

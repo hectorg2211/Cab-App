@@ -14,7 +14,6 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 
 // API
 import pmlAPI from "../api/pmlAPI";
@@ -27,6 +26,7 @@ const Booking = () => {
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
   const [selectedDate, handleDateChange] = useState(new Date());
+  const [airportAction, setAirportAction] = useState("");
 
   const handleSearchClick = async () => {
     toggleMapRender();
@@ -43,6 +43,19 @@ const Booking = () => {
     });
     console.log(document);
   };
+
+  const handleAirportActionRadio = (event) => {
+    setAirportAction(event.target.value);
+  };
+
+  // Radio buttons
+  const controlProps = (item) => ({
+    checked: airportAction === item,
+    onChange: handleAirportActionRadio,
+    value: item,
+    name: "size-radio-button-demo",
+    inputProps: { "aria-label": item },
+  });
 
   useEffect(() => {
     // console.log(pickup.place_name);
@@ -67,7 +80,7 @@ const Booking = () => {
     setShowMap(true);
   };
 
-  console.log(selectedDate);
+  console.log(airportAction);
 
   return (
     <section className="booking">
@@ -99,16 +112,48 @@ const Booking = () => {
       <div className="booking__container">
         {selectedOption === 1 && (
           <FormControl component="fieldset">
-            <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+            <RadioGroup
+              row
+              aria-label="gender"
+              name="row-radio-buttons-group"
+              value={airportAction}
+              onChange={handleAirportActionRadio}
+            >
               <FormControlLabel
                 value="airport-pickup"
-                control={<Radio />}
+                control={
+                  <Radio
+                    {...controlProps("airport-pickup")}
+                    sx={{
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 20,
+                      },
+                      color: "white",
+                      "&.Mui-checked": {
+                        color: "white",
+                      },
+                    }}
+                  />
+                }
                 label="Airpot Pick-up"
               />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
+
               <FormControlLabel
                 value="airport-drop"
-                control={<Radio />}
+                control={
+                  <Radio
+                    {...controlProps("airport-drop")}
+                    sx={{
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 20,
+                      },
+                      color: "white",
+                      "&.Mui-checked": {
+                        color: "white",
+                      },
+                    }}
+                  />
+                }
                 label="Airport Drop"
               />
             </RadioGroup>
