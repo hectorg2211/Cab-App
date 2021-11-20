@@ -13,11 +13,13 @@
       display: flex;
       box-shadow: 4px 4px 4px rgba(71, 101, 187, 75%);
       border-radius: $border-radius;
-      margin-top: 30px;
+      margin-top: 10px;
     }
 
     &:nth-child(3) {
       color: $color-white;
+      justify-content: flex-start;
+      margin-top: 10px;
     }
 
     &:nth-child(2) {
