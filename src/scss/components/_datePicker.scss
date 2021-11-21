@@ -39,3 +39,14 @@
 .PrivateTabIndicator-colorSecondary-3 {
   background: $color-secondary !important;
 }
+
+.MuiTypography-colorInherit,
+.MuiPickersCalendarHeader-dayLabel,
+.MuiPickersSlideTransition-transitionContainer > *,
+.MuiSvgIcon-root,
+.MuiPickersClockNumber-clockNumber,
+.MuiButton-label,
+MuiPickersClock-squareMask > *,
+.MuiTypography-subtitle1 {
+  font-size: 1.5rem !important;
+}

@@ -114,6 +114,26 @@
     }
   }
 
+  &__passengers {
+    border-left: 1px solid $color-light-grey;
+    .passenger-counter {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      width: 100%;
+
+      .passenger-btn {
+        background: none;
+        border: none;
+        cursor: text;
+        padding: 6px 0 7px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
   .cards {
     width: 80vw;
     display: flex;

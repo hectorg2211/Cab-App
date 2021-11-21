@@ -76,7 +76,7 @@ const Booking = () => {
     left: 0,
     zIndex: 1,
     border: "1px solid",
-    p: 1,
+    p: 2,
     bgcolor: "background.paper",
     borderRadius: "3px",
   };
@@ -210,12 +210,26 @@ const Booking = () => {
           <div className="passenger-counter">
             <ClickAwayListener onClickAway={handleClickAway}>
               <Box sx={{ position: "relative" }}>
-                <button type="button" onClick={handleClick}>
-                  Open menu dropdown
+                <button
+                  type="button"
+                  className="passenger-btn"
+                  onClick={handleClick}
+                >
+                  <h2 className="h2"> 0 adt, 0 chd, 0 inf</h2>
                 </button>
                 {open ? (
-                  <Box sx={styles}>
-                    Click me, I will stay visible until you click outside.
+                  <Box sx={styles} className="passenger-dropdown">
+                    <div className="passenger-dropdown__row">
+                      <div className="passenger-dropdown__left">
+                        <h2 className="h2">Adult</h2>
+                        <h3 className="h3 ">12+yrs</h3>
+                      </div>
+                      <div className="passenger-dropdown__right">
+                        <button className="minus">-</button>
+                        <h3 className="h3 h3--1">0</h3>
+                        <button className="plus">+</button>
+                      </div>
+                    </div>
                   </Box>
                 ) : null}
               </Box>
