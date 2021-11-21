@@ -32,6 +32,11 @@ const Booking = () => {
   const [selectedDate, handleDateChange] = useState(new Date());
   const [airportAction, setAirportAction] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [passengers, setPassengers] = useState({
+    adults: 0,
+    children: 0,
+    infants: 0,
+  });
 
   const handleSearchClick = async () => {
     toggleMapRender();
@@ -79,6 +84,7 @@ const Booking = () => {
     p: 2,
     bgcolor: "background.paper",
     borderRadius: "3px",
+    width: "300px",
   };
 
   useEffect(() => {
@@ -159,7 +165,7 @@ const Booking = () => {
                     }}
                   />
                 }
-                label="Airpot Pick-up"
+                label="Airport Pick-up"
               />
 
               <FormControlLabel
@@ -215,7 +221,11 @@ const Booking = () => {
                   className="passenger-btn"
                   onClick={handleClick}
                 >
-                  <h2 className="h2"> 0 adt, 0 chd, 0 inf</h2>
+                  <h2 className="h2">
+                    {" "}
+                    {passengers.adults} adt, {passengers.children} chd,
+                    {passengers.infants} inf
+                  </h2>
                 </button>
                 {open ? (
                   <Box sx={styles} className="passenger-dropdown">
@@ -225,9 +235,94 @@ const Booking = () => {
                         <h3 className="h3 ">12+yrs</h3>
                       </div>
                       <div className="passenger-dropdown__right">
-                        <button className="minus">-</button>
-                        <h3 className="h3 h3--1">0</h3>
-                        <button className="plus">+</button>
+                        <button
+                          className="minus"
+                          onClick={() => {
+                            if (passengers.adults === 0) return;
+                            setPassengers({
+                              ...passengers,
+                              adults: passengers.adults - 1,
+                            });
+                          }}
+                        >
+                          -
+                        </button>
+                        <h3 className="h3 h3--1">{passengers.adults}</h3>
+                        <button
+                          className="plus"
+                          onClick={() => {
+                            setPassengers({
+                              ...passengers,
+                              adults: passengers.adults + 1,
+                            });
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="passenger-dropdown__row">
+                      <div className="passenger-dropdown__left">
+                        <h2 className="h2">Children</h2>
+                        <h3 className="h3 ">(2+12yrs)</h3>
+                      </div>
+                      <div className="passenger-dropdown__right">
+                        <button
+                          className="minus"
+                          onClick={() => {
+                            if (passengers.children === 0) return;
+                            setPassengers({
+                              ...passengers,
+                              children: passengers.children - 1,
+                            });
+                          }}
+                        >
+                          -
+                        </button>
+                        <h3 className="h3 h3--1">{passengers.children}</h3>
+                        <button
+                          className="plus"
+                          onClick={() => {
+                            setPassengers({
+                              ...passengers,
+                              children: passengers.children + 1,
+                            });
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="passenger-dropdown__row">
+                      <div className="passenger-dropdown__left">
+                        <h2 className="h2">Infants</h2>
+                        <h3 className="h3 ">(below 2 yrs)</h3>
+                      </div>
+                      <div className="passenger-dropdown__right">
+                        <button
+                          className="minus"
+                          onClick={() => {
+                            if (passengers.infants === 0) return;
+                            setPassengers({
+                              ...passengers,
+                              infants: passengers.infants - 1,
+                            });
+                          }}
+                        >
+                          -
+                        </button>
+                        <h3 className="h3 h3--1">{passengers.infants}</h3>
+                        <button
+                          className="plus"
+                          onClick={() => {
+                            setPassengers({
+                              ...passengers,
+                              infants: passengers.infants + 1,
+                            });
+                          }}
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
                   </Box>
