@@ -20,7 +20,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="header__container">
-        <img src="./assets/hector.jpeg" alt="" className="header__user-image" />
+        {/* TODO: Here goes the user image className="header__user-image" */}
         <h3 className="header__username">My account</h3>
       </div>
     </div>
