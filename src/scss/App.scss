@@ -6,6 +6,7 @@
 @import "./components/datePicker";
 @import "./components/geocoder";
 @import "./components/passengerDropdown";
+@import "./components/buttons";
 
 @import "./abstracts/utils";
 @import "./layout/header";
@@ -15,3 +16,5 @@
 @import "./layout/why.scss";
 @import "./layout/rates.scss";
 @import "./layout/footer";
+
+@import "./pages/cabsScreen";

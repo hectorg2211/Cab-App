@@ -18,10 +18,18 @@ body {
     font-weight: 400;
     font-size: 3rem;
   }
+
+  &--3 {
+    font-size: 2rem;
+  }
 }
 
 .h3 {
   font-size: 1.6rem;
+
+  &--1 {
+    color: $color-grey;
+  }
 }
 
 .p {

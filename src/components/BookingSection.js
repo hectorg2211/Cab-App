@@ -6,6 +6,9 @@ import Geocoder from "./Geocoder";
 // import BookmarkIcon from "@mui/icons-material/Bookmark";
 // import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
+// React router
+import { useNavigate } from "react-router-dom";
+
 // Date picking
 import MomentUtils from "@date-io/moment";
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -34,9 +37,11 @@ const Booking = () => {
   const [selectedOption, setselectedOption] = useState(2);
   const [airportAction, setAirportAction] = useState("");
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
   // const [showMap, setShowMap] = useState(false);
 
   const handleSearchClick = async () => {
+    navigate("/cabs");
     // toggleMapRender();
     // Create a new ride document
     // let document = await pmlAPI.post("/api/v1/rides", {

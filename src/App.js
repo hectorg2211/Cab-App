@@ -32,7 +32,7 @@ function App() {
             </>
           }
         ></Route>
-        <Route path="/cabs">element={CabsScreen}</Route>
+        <Route path="/cabs" element={<CabsScreen />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,17 @@
+.btn {
+  padding: 10px 30px;
+  font-size: 2rem;
+  &--orange {
+    background: #ef6614;
+    color: $color-white;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    background: brightness(0.85);
+    opacity: 0.8;
+  }
+}
