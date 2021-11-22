@@ -1,9 +1,13 @@
 import React from "react";
+import moment from "moment";
 import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatReclineNormal";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useRideValue } from "../context/rideContext";
 
 const CabsScreen = () => {
+  const [{ pickup, dropoff, date, passengers }] = useRideValue();
+  console.log(pickup, dropoff, date, passengers);
   return (
     <div className="cab-screen">
       <div className="cab-grid">
@@ -13,19 +17,24 @@ const CabsScreen = () => {
           </div>
           <div className="ride-info__pickup">
             <h3 className="h3 h3--1">Pick-up location</h3>
-            <h3 className="h3">Delhi, Delhi, India</h3>
+            <h3 className="h3">{pickup.place_name}</h3>
           </div>
           <div className="ride-info__dropoff">
             <h3 className="h3 h3--1">Drop-off location</h3>
-            <h3 className="h3">Chandigarh, Chandigarh, 160014, India</h3>
+            <h3 className="h3">{dropoff.place_name}</h3>
           </div>
           <div className="ride-info__date">
             <h3 className="h3 h3--1">Pick-up Date & time</h3>
-            <h3 className="h3">Tuesday, 23 November, 2021 2:13 AM</h3>
+            <h3 className="h3">
+              {moment(date).format("MMMM Do YYYY, h:mm a")}
+            </h3>
           </div>
           <div className="ride-info__passengers">
             <h3 className="h3 h3--1">Passengers</h3>
-            <h3 className="h3">4 adt, 0 chd, 0 inf</h3>
+            <h3 className="h3">
+              {passengers.adults} adt, {passengers.children} chd,{" "}
+              {passengers.infants} inf
+            </h3>
           </div>
         </div>
 
@@ -77,6 +86,60 @@ const CabsScreen = () => {
             </div>
           </div>
 
+          <div className="cab-card">
+            <div className="cab-card__image">
+              <img
+                src="https://transfer.easemytrip.com/assets/img/wagonr.png"
+                alt="car 1"
+              />
+            </div>
+
+            <div className="cab-card__details">
+              <h2 className="h2--2">
+                Indica, Swift, Alto, Ford Figo Or Equivalent CNG
+              </h2>
+              <div className="service">
+                <div className="service__unit">
+                  <h3 className="h3 h3--1">1 Unit</h3>
+                </div>
+                <div className="service__seats">
+                  <h3 className="h3 h3--1">
+                    <AirlineSeatReclineNormalIcon /> 4 Seats
+                  </h3>
+                </div>
+                <div className="service__luggage">
+                  <h3 className="h3 h3--1">
+                    {" "}
+                    <LuggageIcon /> 1 Luggage bag
+                  </h3>
+                </div>
+              </div>
+              <div className="tags">
+                <div className="tags__safety">
+                  <h3 className="h3">Safety Standards & Restriction</h3>
+                </div>
+                <div className="tags__payment">
+                  <h3 className="h3">Partial Payment</h3>
+                </div>
+              </div>
+              <div className="checkmarks">
+                <p className="p p--1">
+                  <CheckCircleIcon />
+                  Free cancellation
+                </p>
+                <p className="p p--1">
+                  <CheckCircleIcon />
+                  25 / 7 customer helpline
+                </p>
+              </div>
+            </div>
+
+            <div className="cab-card__price">
+              <h2 className="h2--2">₹ 3253</h2>
+              <button className="btn btn--orange">Book Now</button>
+              <p className="p p--1">All prices include fees & tip</p>
+            </div>
+          </div>
           <div className="cab-card">
             <div className="cab-card__image">
               <img

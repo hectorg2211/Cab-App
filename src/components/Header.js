@@ -1,11 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <div className="header">
       <div className="header__container">
-        <img src="./assets/logo.jpg" alt="" className="header__logo" />
+        <img
+          src="./assets/logo.jpg"
+          alt=""
+          className="header__logo"
+          onClick={() => navigate("/")}
+        />
       </div>
+
       <div className="header__container">
         <ul className="header__navlist">
           <li>
