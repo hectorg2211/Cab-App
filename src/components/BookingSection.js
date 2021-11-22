@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+// eslint-disable-next-line no-unused-vars
 import Map from "./Map";
 import Geocoder from "./Geocoder";
 // import BookmarkIcon from "@mui/icons-material/Bookmark";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+// import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 // Date picking
 import MomentUtils from "@date-io/moment";
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-// Radio buttons
+// Radio buttons //
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -20,16 +21,16 @@ import Box from "@mui/material/Box";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 // API
-import pmlAPI from "../api/pmlAPI";
+// import pmlAPI from "../api/pmlAPI";
 
 // Context
 import { useRideValue } from "../context/rideContext";
 
 const Booking = () => {
-  const [{ pickup, dropoff, distance, duration, passengers, date }, dispatch] =
-    useRideValue();
-
-  console.log(pickup, dropoff, distance, duration, passengers, date);
+  // NOTE: The following context is for the use of the hidden map
+  // const [{ pickup, dropoff, distance, duration, passengers, date }, dispatch] =
+  //   useRideValue();
+  const [{ pickup, dropoff, passengers }, dispatch] = useRideValue();
   const [selectedOption, setselectedOption] = useState(2);
   const [airportAction, setAirportAction] = useState("");
   const [open, setOpen] = React.useState(false);
