@@ -5,10 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 
+// Context
+import { RideProvider } from "./context/rideContext";
+import reducer, { initialState } from "./context/reducer";
+
 ReactDOM.render(
   <React.StrictMode>
     <MuiPickersUtilsProvider utils={MomentUtils}>
-      <App />
+      <RideProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </RideProvider>
     </MuiPickersUtilsProvider>
   </React.StrictMode>,
   document.getElementById("root")

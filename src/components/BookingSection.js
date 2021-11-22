@@ -22,36 +22,33 @@ import ClickAwayListener from "@mui/material/ClickAwayListener";
 // API
 import pmlAPI from "../api/pmlAPI";
 
+// Context
+import { useRideValue } from "../context/rideContext";
+
 const Booking = () => {
-  const [pickup, setPickup] = useState({});
-  const [dropoff, setDropoff] = useState({});
-  const [showMap, setShowMap] = useState(false);
+  const [{ pickup, dropoff, distance, duration, passengers, date }, dispatch] =
+    useRideValue();
+
+  console.log(pickup, dropoff, distance, duration, passengers, date);
   const [selectedOption, setselectedOption] = useState(2);
-  const [duration, setDuration] = useState(0);
-  const [distance, setDistance] = useState(0);
-  const [selectedDate, handleDateChange] = useState(new Date());
   const [airportAction, setAirportAction] = useState("");
   const [open, setOpen] = React.useState(false);
-  const [passengers, setPassengers] = useState({
-    adults: 0,
-    children: 0,
-    infants: 0,
-  });
+  // const [showMap, setShowMap] = useState(false);
 
   const handleSearchClick = async () => {
-    toggleMapRender();
+    // toggleMapRender();
     // Create a new ride document
-    let document = await pmlAPI.post("/api/v1/rides", {
-      from: `${pickup.place_name}`,
-      to: `${dropoff.place_name}`,
-      distance: `${distance}`,
-      coordinates: {
-        from: pickup.center,
-        to: dropoff.center,
-      },
-      date: new Date(),
-    });
-    console.log(document);
+    // let document = await pmlAPI.post("/api/v1/rides", {
+    //   from: `${pickup.place_name}`,
+    //   to: `${dropoff.place_name}`,
+    //   distance: `${distance}`,
+    //   coordinates: {
+    //     from: pickup.center,
+    //     to: dropoff.center,
+    //   },
+    //   date: new Date(),
+    // });
+    // console.log(document);
   };
 
   const handleAirportActionRadio = (event) => {
@@ -87,8 +84,8 @@ const Booking = () => {
     width: "300px",
   };
 
+  /* Get the duration of the ride and store it in context */
   useEffect(() => {
-    // console.log(pickup.place_name);
     if (Object.keys(pickup).length !== 0 && Object.keys(dropoff).length !== 0) {
       fetch(
         `https://api.mapbox.com/directions/v5/mapbox/driving/${pickup.center[0]},${pickup.center[1]};${dropoff.center[0]},${dropoff.center[1]}?access_token=pk.eyJ1IjoiaGVjdG9yZzIyMTEiLCJhIjoiY2t0eWtxbmhtMDhwMTJwcG1jZXd0b3VhMSJ9.8XhBErdMP3PqsR-xN-NkMA`
@@ -96,21 +93,26 @@ const Booking = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.routes) {
-            setDuration(data.routes[0]?.duration);
-            setDistance(data.routes[0]?.distance);
+            console.log(data.routes[0].duration);
+            dispatch({
+              type: "ADD_DURATION",
+              duration: data.routes[0]?.duration,
+            });
+            dispatch({
+              type: "ADD_DISTANCE",
+              distance: data.routes[0]?.distance,
+            });
           }
         });
     }
-  }, [pickup, dropoff]);
+  }, [dispatch, pickup, dropoff]);
 
-  const toggleMapRender = () => {
-    if (Object.keys(pickup).length === 0 || Object.keys(dropoff).length === 0) {
-      return;
-    }
-    setShowMap(true);
-  };
-
-  console.log(airportAction);
+  // const toggleMapRender = () => {
+  //   if (Object.keys(pickup).length === 0 || Object.keys(dropoff).length === 0) {
+  //     return;
+  //   }
+  //   setShowMap(true);
+  // };
 
   return (
     <section className="booking">
@@ -194,20 +196,23 @@ const Booking = () => {
       <div className="booking__container ">
         <div className="booking__pickup">
           <h2 className="h2 ">Pick-up location</h2>
-          <Geocoder number={1} setCoordinates={setPickup} />
+          <Geocoder number={1} />
         </div>
 
         {selectedOption !== 3 && (
           <div className="booking__dropoff">
             <h2 className="h2 ">Drop-off</h2>
-            <Geocoder number={2} setCoordinates={setDropoff} />
+            <Geocoder number={2} />
           </div>
         )}
 
         <div className="booking__date">
           <h2 className="h2 ">Pick-up Date & Time</h2>
           <MuiPickersUtilsProvider utils={MomentUtils}>
-            <DateTimePicker value={selectedDate} onChange={handleDateChange} />
+            <DateTimePicker
+              // value={date}
+              onChange={(e) => dispatch({ type: "ADD_DATE", date: e })}
+            />
           </MuiPickersUtilsProvider>
         </div>
 
@@ -239,9 +244,9 @@ const Booking = () => {
                           className="minus"
                           onClick={() => {
                             if (passengers.adults === 0) return;
-                            setPassengers({
-                              ...passengers,
-                              adults: passengers.adults - 1,
+                            dispatch({
+                              type: "SUBTRACT_PASSENGERS_ADULTS",
+                              passengers,
                             });
                           }}
                         >
@@ -251,9 +256,9 @@ const Booking = () => {
                         <button
                           className="plus"
                           onClick={() => {
-                            setPassengers({
-                              ...passengers,
-                              adults: passengers.adults + 1,
+                            dispatch({
+                              type: "ADD_PASSENGERS_ADULTS",
+                              passengers,
                             });
                           }}
                         >
@@ -271,9 +276,9 @@ const Booking = () => {
                           className="minus"
                           onClick={() => {
                             if (passengers.children === 0) return;
-                            setPassengers({
-                              ...passengers,
-                              children: passengers.children - 1,
+                            dispatch({
+                              type: "SUBTRACT_PASSENGERS_CHILDREN",
+                              passengers,
                             });
                           }}
                         >
@@ -283,9 +288,9 @@ const Booking = () => {
                         <button
                           className="plus"
                           onClick={() => {
-                            setPassengers({
-                              ...passengers,
-                              children: passengers.children + 1,
+                            dispatch({
+                              type: "ADD_PASSENGERS_CHILDREN",
+                              passengers,
                             });
                           }}
                         >
@@ -303,9 +308,9 @@ const Booking = () => {
                           className="minus"
                           onClick={() => {
                             if (passengers.infants === 0) return;
-                            setPassengers({
-                              ...passengers,
-                              infants: passengers.infants - 1,
+                            dispatch({
+                              type: "SUBTRACT_PASSENGERS_INFANTS",
+                              passengers,
                             });
                           }}
                         >
@@ -315,9 +320,9 @@ const Booking = () => {
                         <button
                           className="plus"
                           onClick={() => {
-                            setPassengers({
-                              ...passengers,
-                              infants: passengers.infants + 1,
+                            dispatch({
+                              type: "ADD_PASSENGERS_INFANTS",
+                              passengers,
                             });
                           }}
                         >
@@ -338,7 +343,7 @@ const Booking = () => {
         </button>
       </div>
 
-      {showMap && (
+      {/* {showMap && (
         <>
           <div className="booking__map">
             <Map
@@ -374,7 +379,7 @@ const Booking = () => {
             </div>
           </div>
         </>
-      )}
+      )} */}
     </section>
   );
 };

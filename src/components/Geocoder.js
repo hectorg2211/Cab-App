@@ -3,10 +3,15 @@ import { useEffect } from "react";
 import mapboxgl from "!mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
+// Context
+import { useRideValue } from "../context/rideContext";
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaGVjdG9yZzIyMTEiLCJhIjoiY2t0eWtxbmhtMDhwMTJwcG1jZXd0b3VhMSJ9.8XhBErdMP3PqsR-xN-NkMA";
 
-const Geocoder = ({ number, setCoordinates }) => {
+const Geocoder = ({ number }) => {
+  const [, dispatch] = useRideValue();
+
   useEffect(() => {
     const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
@@ -19,10 +24,10 @@ const Geocoder = ({ number, setCoordinates }) => {
 
     geocoder.addTo(`#geocoder${number}`);
     geocoder.on("result", (e) => {
-      console.log(e.result);
-      setCoordinates(e.result);
+      if (number === 1) dispatch({ type: "ADD_PICKUP", pickup: e.result });
+      if (number === 2) dispatch({ type: "ADD_DROPOFF", dropoff: e.result });
     });
-  }, [setCoordinates, number]);
+  }, [dispatch, number]);
 
   return <div className="geocoder" id={`geocoder${number}`}></div>;
 };
