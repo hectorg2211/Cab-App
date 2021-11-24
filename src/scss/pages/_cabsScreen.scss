@@ -5,10 +5,15 @@
   padding: 30px;
 
   .cab-grid {
-    width: 80vw;
+    width: $vw;
     display: flex;
     justify-content: center;
     gap: 30px;
+
+    @media only screen and (max-width: 75em) {
+      //1200px
+      width: $vw-big;
+    }
   }
 
   .ride-info {

@@ -6,14 +6,23 @@
   padding: 50px 0;
 
   &__container {
-    width: 80vw;
+    width: $vw;
     justify-content: center;
+
+    @media only screen and (max-width: 75em) {
+      //1200px
+      width: $vw-big;
+    }
     &:nth-child(4) {
       background: $color-white;
       display: flex;
       box-shadow: 4px 4px 4px rgba(71, 101, 187, 75%);
       border-radius: $border-radius;
       margin-top: 10px;
+
+      @media only screen and (max-width: 56.25em) {
+        flex-direction: column;
+      }
     }
 
     &:nth-child(3) {
@@ -45,9 +54,14 @@
 
   &__map {
     height: 80vh;
-    width: 80vw;
+    width: $vw;
     overflow: hidden;
     border-radius: $border-radius;
+
+    @media only screen and (max-width: 75em) {
+      //1200px
+      width: $vw-big;
+    }
   }
 
   &__container,
@@ -77,16 +91,26 @@
       grid-column-start: 1;
       grid-column-end: 3;
     }
+
+    @media only screen and (max-width: 56.25em) {
+      width: 100%;
+    }
   }
 
   &__pickup {
     border-right: 1px solid $color-light-grey;
+    @media only screen and (max-width: 56.25em) {
+      border: none;
+    }
   }
 
   &__date {
     border-left: 1px solid $color-light-grey;
     flex: 1;
     padding: 8px 22px;
+    @media only screen and (max-width: 56.25em) {
+      border: none;
+    }
   }
 
   &__button {
@@ -116,6 +140,10 @@
 
   &__passengers {
     border-left: 1px solid $color-light-grey;
+
+    @media only screen and (max-width: 56.25em) {
+      border: none;
+    }
     .passenger-counter {
       grid-column-start: 1;
       grid-column-end: 3;
@@ -135,11 +163,16 @@
   }
 
   .cards {
-    width: 80vw;
+    width: $vw;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
+
+    @media only screen and (max-width: 75em) {
+      //1200px
+      width: $vw-big;
+    }
 
     &__top,
     &__bottom {

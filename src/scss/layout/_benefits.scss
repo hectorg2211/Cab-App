@@ -9,8 +9,17 @@
     justify-content: center;
     gap: 10px;
 
+    @media only screen and (max-width: 37.5em) {
+      flex-direction: column;
+    }
+
     &:last-of-type {
-      width: 80vw;
+      width: $vw;
+
+      @media only screen and (max-width: 75em) {
+        //1200px
+        width: $vw-big;
+      }
     }
 
     .card {

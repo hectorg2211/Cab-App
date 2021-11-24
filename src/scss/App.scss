@@ -2,13 +2,15 @@
 @import "./base/variables";
 @import "./base/typography";
 
+@import "./abstracts/utils";
+@import "./abstracts/mixins";
+
 @import "./components/map";
 @import "./components/datePicker";
 @import "./components/geocoder";
 @import "./components/passengerDropdown";
 @import "./components/buttons";
 
-@import "./abstracts/utils";
 @import "./layout/header";
 @import "./layout/bookingSection";
 @import "./layout/benefits";
