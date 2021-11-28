@@ -19,10 +19,12 @@ const CabsScreen = () => {
             <h3 className="h3 h3--1">Pick-up location</h3>
             <h3 className="h3">{pickup.place_name}</h3>
           </div>
-          <div className="ride-info__dropoff">
-            <h3 className="h3 h3--1">Drop-off location</h3>
-            <h3 className="h3">{dropoff.place_name}</h3>
-          </div>
+          {dropoff.place_name && (
+            <div className="ride-info__dropoff">
+              <h3 className="h3 h3--1">Drop-off location</h3>
+              <h3 className="h3">{dropoff.place_name}</h3>
+            </div>
+          )}
           <div className="ride-info__date">
             <h3 className="h3 h3--1">Pick-up Date & time</h3>
             <h3 className="h3">
