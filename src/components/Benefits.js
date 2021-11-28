@@ -1,5 +1,8 @@
 import React from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
+import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
+import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 
 const Benefits = () => {
   return (
@@ -12,10 +15,7 @@ const Benefits = () => {
       <div className="benefits__container">
         <div className="card">
           <div className="card__logo">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/1571/1571075.png"
-              alt="Money logo"
-            />
+            <AttachMoneyRoundedIcon />
           </div>
           <div className="card__description">
             <h3 className="h3 h3--1">Get Flat 10% Off</h3>
@@ -28,10 +28,7 @@ const Benefits = () => {
         </div>
         <div className="card">
           <div className="card__logo">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/5602/5602273.png"
-              alt="Money logo"
-            />
+            <TrendingUpRoundedIcon />
           </div>
           <div className="card__description">
             <h3 className="h3 h3--1">Travel Advisory</h3>
@@ -44,10 +41,7 @@ const Benefits = () => {
         </div>
         <div className="card">
           <div className="card__logo">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/5602/5602765.png"
-              alt="Money logo"
-            />
+            <ReceiptRoundedIcon />
           </div>
           <div className="card__description">
             <h3 className="h3 h3--1">Partial Payment</h3>
