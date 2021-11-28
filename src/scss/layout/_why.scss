@@ -27,10 +27,20 @@
     gap: 10px;
     text-align: center;
 
-    .img {
-      padding: 30px;
+    svg {
+      width: 40%;
+      height: 40%;
+      padding: 20px;
+      color: $color-secondary;
       border: 1px solid $color-secondary;
       border-radius: 100rem;
+      transition: all 0.2s;
+
+      &:hover {
+        color: $color-primary;
+        border: 1px solid $color-primary;
+        transform: scale(1.1);
+      }
     }
   }
 }
