@@ -73,7 +73,7 @@ const CabsScreen = () => {
             <div className="banner__info">
               <div className="banner__img">
                 <img
-                  src="https://cdn-icons.flaticon.com/png/512/2048/premium/2048781.png?token=exp=1637548764~hmac=68cc51e83010bf951930c4989160afc1"
+                  src="https://cdn-icons-png.flaticon.com/512/912/912316.png"
                   alt="like"
                 />
               </div>

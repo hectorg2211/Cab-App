@@ -9,10 +9,17 @@
     display: flex;
     justify-content: center;
     gap: 30px;
+    align-items: flex-start;
 
     @media only screen and (max-width: 75em) {
       //1200px
       width: $vw-big;
+    }
+
+    @include respond(tab-port) {
+      // width < 900?
+      flex-direction: column;
+      align-items: stretch;
     }
   }
 
@@ -42,6 +49,11 @@
       padding: 20px;
       gap: 20px;
 
+      @include respond(phone) {
+        // width < 600px
+        flex-direction: column;
+      }
+
       &__info {
         display: flex;
         gap: 20px;
@@ -51,7 +63,7 @@
 
       &__img {
         flex: 0.1;
-        background: chartreuse;
+        background: $color-white;
         padding: 10px 10px;
         border-radius: 50rem;
         display: flex;
@@ -76,6 +88,11 @@
       align-items: center;
       border: 1px solid $color-light-grey;
       box-shadow: 0 2px 4px 0 #c8c8c8;
+
+      @include respond(phone) {
+        // width < 600px
+        flex-direction: column;
+      }
 
       &__details {
         flex: 3;
