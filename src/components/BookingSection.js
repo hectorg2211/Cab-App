@@ -33,7 +33,7 @@ const Booking = () => {
   // NOTE: The following context is for the use of the hidden map
   // const [{ pickup, dropoff, distance, duration, passengers, date }, dispatch] =
   //   useRideValue();
-  const [{ pickup, dropoff, passengers }, dispatch] = useRideValue();
+  const [{ pickup, dropoff, passengers, date }, dispatch] = useRideValue();
   const [selectedOption, setselectedOption] = useState(2);
   const [airportAction, setAirportAction] = useState("");
   const [open, setOpen] = React.useState(false);
@@ -41,20 +41,28 @@ const Booking = () => {
   // const [showMap, setShowMap] = useState(false);
 
   const handleSearchClick = async () => {
-    navigate("/cabs");
-    // toggleMapRender();
-    // Create a new ride document
-    // let document = await pmlAPI.post("/api/v1/rides", {
-    //   from: `${pickup.place_name}`,
-    //   to: `${dropoff.place_name}`,
-    //   distance: `${distance}`,
-    //   coordinates: {
-    //     from: pickup.center,
-    //     to: dropoff.center,
-    //   },
-    //   date: new Date(),
-    // });
-    // console.log(document);
+    if (selectedOption === 3) {
+      dispatch({
+        type: "ADD_DROPOFF",
+        dropoff: {},
+      });
+    }
+    // Navigate to the next screen if the pickup and a date are selected
+    if (Object.keys(pickup).length > 0 && date) navigate("/cabs");
+    /* toggleMapRender();
+    Create a new ride document
+    let document = await pmlAPI.post("/api/v1/rides", {
+      from: `${pickup.place_name}`,
+      to: `${dropoff.place_name}`,
+      distance: `${distance}`,
+      coordinates: {
+        from: pickup.center,
+        to: dropoff.center,
+      },
+      date: new Date(),
+    });
+    console.log(document);
+    */
   };
 
   const handleAirportActionRadio = (event) => {
@@ -233,7 +241,6 @@ const Booking = () => {
                   onClick={handleClick}
                 >
                   <h2 className="h2">
-                    {" "}
                     {passengers.adults} adt, {passengers.children} chd,
                     {passengers.infants} inf
                   </h2>

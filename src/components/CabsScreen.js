@@ -1,13 +1,49 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import moment from "moment";
-import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatReclineNormal";
-import LuggageIcon from "@mui/icons-material/Luggage";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+// Router
+import { useNavigate } from "react-router-dom";
+
+// Contes
 import { useRideValue } from "../context/rideContext";
+
+// API
+import pmlAPI from "../api/pmlAPI";
+
+import CabCard from "./CabCard";
 
 const CabsScreen = () => {
   const [{ pickup, dropoff, date, passengers }] = useRideValue();
-  console.log(pickup, dropoff, date, passengers);
+  const [cabs, setCabs] = useState([]);
+  const navigate = useNavigate();
+
+  const onPageLoad = useCallback(async () => {
+    let cabs = await pmlAPI.get(
+      `/api/v1/cabs?seats[gte]=${
+        passengers.adults + passengers.children + passengers.infants < 4
+          ? 4
+          : passengers.adults + passengers.children + passengers.infants
+      }&sort=seats`
+    );
+    setCabs(cabs.data.data.data);
+  }, [passengers]);
+
+  useEffect(() => {
+    if (!pickup || !date) navigate("/");
+    onPageLoad();
+  }, [pickup, date, navigate, onPageLoad]);
+
+  const renderCabs = () =>
+    cabs.map((cab) => (
+      <CabCard
+        carModel={cab.carModel}
+        seats={cab.seats}
+        luggage={cab.luggage}
+        price={cab.price}
+        cabImage={cab.cabImage}
+      />
+    ));
+
   return (
     <div className="cab-screen">
       <div className="cab-grid">
@@ -88,114 +124,8 @@ const CabsScreen = () => {
             </div>
           </div>
 
-          <div className="cab-card">
-            <div className="cab-card__image">
-              <img
-                src="https://transfer.easemytrip.com/assets/img/wagonr.png"
-                alt="car 1"
-              />
-            </div>
-
-            <div className="cab-card__details">
-              <h2 className="h2--2">
-                Indica, Swift, Alto, Ford Figo Or Equivalent CNG
-              </h2>
-              <div className="service">
-                <div className="service__unit">
-                  <h3 className="h3 h3--1">1 Unit</h3>
-                </div>
-                <div className="service__seats">
-                  <h3 className="h3 h3--1">
-                    <AirlineSeatReclineNormalIcon /> 4 Seats
-                  </h3>
-                </div>
-                <div className="service__luggage">
-                  <h3 className="h3 h3--1">
-                    {" "}
-                    <LuggageIcon /> 1 Luggage bag
-                  </h3>
-                </div>
-              </div>
-              <div className="tags">
-                <div className="tags__safety">
-                  <h3 className="h3">Safety Standards & Restriction</h3>
-                </div>
-                <div className="tags__payment">
-                  <h3 className="h3">Partial Payment</h3>
-                </div>
-              </div>
-              <div className="checkmarks">
-                <p className="p p--1">
-                  <CheckCircleIcon />
-                  Free cancellation
-                </p>
-                <p className="p p--1">
-                  <CheckCircleIcon />
-                  25 / 7 customer helpline
-                </p>
-              </div>
-            </div>
-
-            <div className="cab-card__price">
-              <h2 className="h2--2">₹ 3253</h2>
-              <button className="btn btn--orange">Book Now</button>
-              <p className="p p--1">All prices include fees & tip</p>
-            </div>
-          </div>
-          <div className="cab-card">
-            <div className="cab-card__image">
-              <img
-                src="https://transfer.easemytrip.com/assets/img/wagonr.png"
-                alt="car 1"
-              />
-            </div>
-
-            <div className="cab-card__details">
-              <h2 className="h2--2">
-                Indica, Swift, Alto, Ford Figo Or Equivalent CNG
-              </h2>
-              <div className="service">
-                <div className="service__unit">
-                  <h3 className="h3 h3--1">1 Unit</h3>
-                </div>
-                <div className="service__seats">
-                  <h3 className="h3 h3--1">
-                    <AirlineSeatReclineNormalIcon /> 4 Seats
-                  </h3>
-                </div>
-                <div className="service__luggage">
-                  <h3 className="h3 h3--1">
-                    {" "}
-                    <LuggageIcon /> 1 Luggage bag
-                  </h3>
-                </div>
-              </div>
-              <div className="tags">
-                <div className="tags__safety">
-                  <h3 className="h3">Safety Standards & Restriction</h3>
-                </div>
-                <div className="tags__payment">
-                  <h3 className="h3">Partial Payment</h3>
-                </div>
-              </div>
-              <div className="checkmarks">
-                <p className="p p--1">
-                  <CheckCircleIcon />
-                  Free cancellation
-                </p>
-                <p className="p p--1">
-                  <CheckCircleIcon />
-                  25 / 7 customer helpline
-                </p>
-              </div>
-            </div>
-
-            <div className="cab-card__price">
-              <h2 className="h2--2">₹ 3253</h2>
-              <button className="btn btn--orange">Book Now</button>
-              <p className="p p--1">All prices include fees & tip</p>
-            </div>
-          </div>
+          {renderCabs()}
+          {cabs.length === 0 && <h1>No cabs found</h1>}
         </div>
       </div>
     </div>
