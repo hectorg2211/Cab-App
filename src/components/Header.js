@@ -7,7 +7,7 @@ const Header = () => {
     <div className="header">
       <div className="header__container">
         <img
-          src="./assets/logo.jpg"
+          src="./assets/logo.png"
           alt=""
           className="header__logo"
           onClick={() => navigate("/")}
