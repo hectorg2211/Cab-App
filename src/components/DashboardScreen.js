@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
+
+import DashBoardGraphs from "./DashBoardGraphs";
 
 const DashboardScreen = () => {
   return (
@@ -16,15 +18,26 @@ const DashboardScreen = () => {
         </div>
 
         <div className="navbar__container">
-          <Link to="/cabs">
-            <h3 className="h3 h3--2">Cabs</h3>
-          </Link>
-          <Link to="/cabs">
+          <Link to="/dashboard/reports">
             <h3 className="h3 h3--2">Reports</h3>
+          </Link>
+          <Link to="/dashboard/cabs">
+            <h3 className="h3 h3--2">Cabs</h3>
           </Link>
         </div>
       </div>
-      <div className="data">Hello</div>
+
+      <div className="navbar__ghost"></div>
+
+      <div className="data">
+        <div className="data__title">
+          <h2 className="h2 h2--1">Dashboard</h2>
+
+          <Routes>
+            <Route path="/reports" element={<DashBoardGraphs />} />
+          </Routes>
+        </div>
+      </div>
     </div>
   );
 };

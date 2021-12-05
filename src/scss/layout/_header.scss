@@ -3,6 +3,15 @@
   padding: 10px;
   display: flex;
   align-items: center;
+  position: fixed;
+  background: $color-white;
+  width: 100%;
+  z-index: 100;
+
+  &__ghost {
+    height: 65px;
+    padding: 10px;
+  }
 
   &__container {
     height: 100%;

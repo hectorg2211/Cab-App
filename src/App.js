@@ -36,7 +36,7 @@ function App() {
           }
         ></Route>
         <Route path="/cabs" element={<CabsScreen />}></Route>
-        <Route path="/dashboard" element={<DashboardScreen />}></Route>
+        <Route path="/dashboard/*" element={<DashboardScreen />}></Route>
       </Routes>
     </BrowserRouter>
   );
