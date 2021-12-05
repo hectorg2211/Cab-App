@@ -12,7 +12,10 @@ import TopRoutes from "./components/TopRoutes";
 import Why from "./components/Why";
 import Rates from "./components/Rates";
 import Footer from "./components/Footer";
+
+// Pages
 import CabsScreen from "./components/CabsScreen";
+import DashboardScreen from "./components/DashboardScreen";
 
 function App() {
   return (
@@ -33,6 +36,7 @@ function App() {
           }
         ></Route>
         <Route path="/cabs" element={<CabsScreen />}></Route>
+        <Route path="/dashboard" element={<DashboardScreen />}></Route>
       </Routes>
     </BrowserRouter>
   );

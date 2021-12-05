@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,13 +20,14 @@ const Header = () => {
             <a href="/">Cabs</a>
           </li>
           <li>
-            <a href="/">Data</a>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
           <li>
             <a href="/">About us</a>
           </li>
         </ul>
       </div>
+
       <div className="header__container">
         {/* TODO: Here goes the user image className="header__user-image" */}
         <h3 className="header__username">My account</h3>
