@@ -3,7 +3,14 @@ import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatRecline
 import LuggageIcon from "@mui/icons-material/Luggage";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-const CabCard = ({ carModel, seats, luggage, price, cabImage }) => {
+const CabCard = ({
+  carModel,
+  seats,
+  luggage,
+  price,
+  cabImage,
+  dashboardDisplay,
+}) => {
   return (
     <div className="cab-card">
       <div className="cab-card__image">
@@ -27,30 +34,41 @@ const CabCard = ({ carModel, seats, luggage, price, cabImage }) => {
             </h3>
           </div>
         </div>
-        <div className="tags">
-          <div className="tags__safety">
-            <h3 className="h3">Safety Standards & Restriction</h3>
-          </div>
-          <div className="tags__payment">
-            <h3 className="h3">Partial Payment</h3>
-          </div>
-        </div>
-        <div className="checkmarks">
-          <p className="p p--1">
-            <CheckCircleIcon />
-            Free cancellation
-          </p>
-          <p className="p p--1">
-            <CheckCircleIcon />
-            25 / 7 customer helpline
-          </p>
-        </div>
+        {!dashboardDisplay && (
+          <>
+            <div className="tags">
+              <div className="tags__safety">
+                <h3 className="h3">Safety Standards & Restriction</h3>
+              </div>
+              <div className="tags__payment">
+                <h3 className="h3">Partial Payment</h3>
+              </div>
+            </div>
+
+            <div className="checkmarks">
+              <p className="p p--1">
+                <CheckCircleIcon />
+                Free cancellation
+              </p>
+              <p className="p p--1">
+                <CheckCircleIcon />
+                25 / 7 customer helpline
+              </p>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="cab-card__price">
-        <h2 className="h2--2">₹ {price}</h2>
-        <button className="btn btn--orange">Book Now</button>
-        <p className="p p--1">All prices include fees & tip</p>
+        <h2 className="h2--2">
+          ₹ {price} {dashboardDisplay && "per hour"}
+        </h2>
+        {!dashboardDisplay && (
+          <>
+            <button className="btn btn--1">Book Now</button>
+            <p className="p p--1">All prices include fees & tip</p>
+          </>
+        )}
       </div>
     </div>
   );

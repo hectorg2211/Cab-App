@@ -10,22 +10,22 @@ body {
   &--1 {
     color: $color-white;
     font-weight: 400;
-    font-size: 3rem;
+    font-size: 3.2rem;
   }
 
   &--2 {
     color: $color-black;
     font-weight: 400;
-    font-size: 3rem;
+    font-size: 3.2rem;
   }
 
   &--3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 }
 
 .h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 
   &--1 {
     color: $color-secondary;
@@ -37,7 +37,7 @@ body {
 }
 
 .p {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 
   &--1 {
     font-weight: 400;
@@ -49,7 +49,7 @@ body {
 
 .MuiTypography-body2,
 .MuiTypography-body1 {
-  font-size: 1.3rem !important;
+  font-size: 1.5rem !important;
 }
 
 .span {

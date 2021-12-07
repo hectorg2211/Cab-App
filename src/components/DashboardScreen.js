@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import DashBoardGraphs from "./DashBoardGraphs";
+import DashboardCabs from "./DashboardCabs";
 
 const DashboardScreen = () => {
   return (
@@ -35,6 +36,7 @@ const DashboardScreen = () => {
 
           <Routes>
             <Route path="/reports" element={<DashBoardGraphs />} />
+            <Route path="/cabs" element={<DashboardCabs />} />
           </Routes>
         </div>
       </div>

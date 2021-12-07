@@ -1,13 +1,18 @@
 .btn {
   padding: 10px 30px;
   font-size: 2rem;
-  &--orange {
-    background: #ef6614;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--1 {
+    background: $color-primary;
     color: $color-white;
-    border: none;
-    border-radius: $border-radius;
-    cursor: pointer;
-    transition: all 0.2s;
+  }
+
+  &--2 {
+    background: $color-secondary;
   }
 
   &:hover {
