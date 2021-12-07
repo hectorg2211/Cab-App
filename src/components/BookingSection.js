@@ -24,7 +24,7 @@ import Box from "@mui/material/Box";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 // API
-// import pmlAPI from "../api/pmlAPI";
+import pmlAPI from "../api/pmlAPI";
 
 // Context
 import { useRideValue } from "../context/rideContext";
@@ -34,11 +34,13 @@ const Booking = () => {
   // const [{ pickup, dropoff, distance, duration, passengers, date }, dispatch] =
   //   useRideValue();
   const [{ pickup, dropoff, passengers, date }, dispatch] = useRideValue();
-  const [selectedOption, setselectedOption] = useState(2);
+  const [selectedOption, setselectedOption] = useState("outstation");
   const [airportAction, setAirportAction] = useState("");
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   // const [showMap, setShowMap] = useState(false);
+
+  console.log(selectedOption);
 
   const handleSearchClick = async () => {
     if (selectedOption === 3) {
@@ -47,6 +49,17 @@ const Booking = () => {
         dropoff: {},
       });
     }
+
+    /* TODO: Make a post request to build a new ride */
+    pmlAPI.post("/api/v1/rides", {
+      type: selectedOption,
+      from: pickup.place_name,
+      to: dropoff.place_name,
+      airportTransfer: airportAction,
+      pickupDate: date,
+      passengers: passengers.adults + passengers.children + passengers.infants,
+    });
+
     // Navigate to the next screen if the pickup and a date are selected
     if (Object.keys(pickup).length > 0 && date) navigate("/cabs");
     /* toggleMapRender();
@@ -136,27 +149,29 @@ const Booking = () => {
 
       <div className="booking__container">
         <p
-          className={`p p--1 ${selectedOption === 1 ? "active" : ""}`}
-          onClick={() => setselectedOption(1)}
+          className={`p p--1 ${selectedOption === "airport" ? "active" : ""}`}
+          onClick={() => setselectedOption("airport")}
         >
           Aiport Transfer
         </p>
         <p
-          className={`p p--1 ${selectedOption === 2 ? "active" : ""}`}
-          onClick={() => setselectedOption(2)}
+          className={`p p--1 ${
+            selectedOption === "outstation" ? "active" : ""
+          }`}
+          onClick={() => setselectedOption("outstation")}
         >
           Outstation/Other
         </p>
         <p
-          className={`p p--1 ${selectedOption === 3 ? "active" : ""}`}
-          onClick={() => setselectedOption(3)}
+          className={`p p--1 ${selectedOption === "hourly" ? "active" : ""}`}
+          onClick={() => setselectedOption("hourly")}
         >
           Hourly
         </p>
       </div>
 
       <div className="booking__container">
-        {selectedOption === 1 && (
+        {selectedOption === "airport" && (
           <FormControl component="fieldset">
             <RadioGroup
               row
@@ -213,7 +228,7 @@ const Booking = () => {
           <Geocoder number={1} />
         </div>
 
-        {selectedOption !== 3 && (
+        {selectedOption !== "hourly" && (
           <div className="booking__dropoff">
             <h2 className="h2 ">Drop-off</h2>
             <Geocoder number={2} />

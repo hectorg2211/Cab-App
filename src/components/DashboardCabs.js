@@ -11,7 +11,8 @@ const DashboardCabs = () => {
 
   const fetchCabs = useCallback(async () => {
     const cabs = await pmlAPI.get(`/api/v1/cabs?sort=-_id`);
-    setCabs(cabs.data.data.data);
+    // setCabs(cabs.data.data.data); TODO: Change in production
+    setCabs(cabs.data.data);
   }, []);
 
   useEffect(() => {

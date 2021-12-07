@@ -25,7 +25,8 @@ const CabsScreen = () => {
           : passengers.adults + passengers.children + passengers.infants
       }&sort=seats`
     );
-    setCabs(cabs.data.data.data);
+    // setCabs(cabs.data.data.data); // TODO: Change in production
+    setCabs(cabs.data.data);
   }, [passengers]);
 
   useEffect(() => {
