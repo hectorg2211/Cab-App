@@ -10,7 +10,7 @@ const CabCreationForm = ({ setCabCreation }) => {
 
   const handleCabFormSubmit = async (e) => {
     e.preventDefault();
-    const cabs = await pmlAPI.post(`/api/v1/cabs`, {
+    await pmlAPI.post(`/api/v1/cabs`, {
       carModel,
       luggage,
       seats,

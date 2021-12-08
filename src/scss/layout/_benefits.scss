@@ -35,10 +35,12 @@
       padding: 10px;
 
       &__logo {
-        width: 14%;
+        width: 40%;
+        display: flex;
+        justify-content: center;
         svg {
-          max-width: 100%;
-          min-width: 50%;
+          width: 100%;
+          transform: scale(2);
         }
       }
 
